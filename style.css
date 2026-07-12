@@ -1,14 +1,17 @@
 /* --- RESET & VARIABLES --- */
+/* --- RESET & VARIABLES --- */
+@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800&display=swap');
+
 :root {
-    --primary: #f85606; /* Daraz Orange */
-    --accent: #ff3300;
-    --dark: #333;
+    --primary: #FF3F6C; /* Myntra Rose */
+    --accent: #03A685; /* Myntra Green (Trust) */
+    --dark: #282C3F; /* Myntra Charcoal */
     --gray: #f5f5f5;
-    --border: #e2e2e2;
+    --border: #eaeaec;
     --white: #fff;
 }
-* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Roboto', sans-serif; -webkit-tap-highlight-color: transparent; }
-body { background: var(--gray); padding-bottom: 70px; }
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Assistant', sans-serif; -webkit-tap-highlight-color: transparent; }
+body { background: var(--gray); padding-bottom: 70px; color: var(--dark); }
 a { text-decoration: none; color: inherit; }
 img { max-width: 100%; display: block; }
 button { cursor: pointer; }
@@ -51,7 +54,7 @@ button { cursor: pointer; }
 .sort-item.active { color: var(--primary); font-weight: bold; }
 
 /* Promo Banner */
-.promo-banner img { width: 100%; height: auto; display: block; object-fit: cover; max-height: 150px; }
+.promo-banner img { width: 100%; aspect-ratio: 3 / 1;  display: block; object-fit: cover; max-height: 150px; }
 
 /* --- PRODUCT GRID (Fixed) --- */
 /* --- 1. TWO-COLUMN MASONRY WRAPPER --- */
@@ -71,25 +74,58 @@ button { cursor: pointer; }
     width: 50%;
 }
 
-/* --- 2. THE CARD --- */
+
+
+
+
+
+
+
+
+
+/* --- 2. THE CARD (MYNTRA STYLE) --- */
+/* --- 2. THE CARD (MYNTRA SKELETON) --- */
+/* --- 2. THE CARD (MYNTRA SKELETON) --- */
 .product-card { 
-    background: var(--white); 
-    border-radius: 4px; 
-    overflow: hidden; 
-    padding-bottom: 8px; 
+    background: transparent; 
+    border-radius: 0; 
+    overflow: visible; 
     display: flex; 
     flex-direction: column; 
     height: max-content;
     width: 100%;
 }
 
+.image-wrapper {
+    position: relative;
+    width: 100%;
+    border-radius: 6px; 
+    overflow: hidden; 
+}
+
 .product-card img { 
     width: 100%; 
-    height: 180px; 
+    aspect-ratio: 3 / 4; 
+    height: auto; 
     object-fit: cover; 
-    background-color: #f0f0f0; /* Soft grey placeholder */
-    /* Optional: Adds a slight pulsing animation to the placeholder */
+    background-color: #f0f0f0; 
     animation: pulseBg 1.5s infinite; 
+}
+
+.sold-badge {
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--primary);
+    font-size: 10px;
+    font-weight: bold;
+    padding: 3px 6px;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 @keyframes pulseBg {
@@ -98,40 +134,114 @@ button { cursor: pointer; }
     100% { background-color: #f0f0f0; }
 }
 
-/* Update 2: Remove 'justify-content: space-between' to close the gap */
-/* 2. Remove 'space-between' and use a natural gap instead */
 .p-details { 
-    padding: 8px 8px 4px 8px; 
+    padding: 5px 4px 6px 4px; 
     display: flex; 
     flex-direction: column; 
-    gap: 6px; /* Adds a perfect, consistent space between title and price */
+    gap: 0; 
 }
 
-/* 3. Remove fixed height so 1-line titles don't leave empty space */
-.p-title { 
+.p-brand { 
     font-size: 13px; 
-    line-height: 1.3;
+    font-weight: 700; 
+    color: var(--dark);
+    line-height: 1.1;
     display: -webkit-box; 
-    -webkit-line-clamp: 2; 
+    -webkit-line-clamp: 1; 
     -webkit-box-orient: vertical; 
     overflow: hidden; 
-    color: #333; 
-    /* Make sure there is NO 'height' property here! */
+    margin: 0 0 2px 0; 
+    padding: 0;
 }
-.p-price { color: var(--primary); font-size: 16px; font-weight: bold; }
+
+.p-title { 
+    font-size: 11px; 
+    color: #7E818C; 
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    line-height: 1.1;
+    margin: 0 0 2px 0; /* Ultra tight margin */
+    padding: 0;
+}
+
+.price-row {
+    /* FIX: Removed Flexbox completely. Inline-block flow is foolproof against ghost spacing */
+    display: block;
+    line-height: 1;
+    margin: 0;
+    padding: 0;
+}
+
+.p-old-price { font-size: 12px; color: #7E818C; text-decoration: line-through; margin: 0 4px 0 0; padding: 0; display: inline-block; } 
+.p-price { color: var(--dark); font-size: 13px; font-weight: 700; margin: 0 4px 0 0; padding: 0; display: inline-block; }
+.p-discount { color: #FF905A; font-size: 10px; font-weight: 700; margin: 0; padding: 0; display: inline-block; }
+
+
+
+
+
+
+
+
 
 /* --- PRODUCT DETAILS PAGE --- */
 /* Note: We now use .top-header for the product page too */
-.detail-image { width: 100%; height: 380px; object-fit: cover; background: #fff; }
-.gallery-strip { display: flex; gap: 10px; overflow-x: auto; padding: 10px; background: white; border-bottom: 1px solid #eee; }
-.thumbnail { width: 60px; height: 60px; border-radius: 4px; border: 1px solid #ddd; object-fit: cover; flex-shrink: 0; }
+/* --- PRODUCT DETAILS PAGE --- */
+/* --- PRODUCT DETAILS PAGE --- */
+/* --- PRODUCT DETAILS PAGE --- */
+.product-image-container {
+    position: relative;
+    width: 100%;
+    max-height: 65vh; /* FIX: Set limit to 65vh like H&M */
+    overflow: hidden;
+    background: #f5f5f5; 
+    display: block; /* FIX: Set to block so smaller images collapse the container natively and pull content up */
+}
+
+.bg-blur { display: none; }
+
+.detail-image {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: auto; /* FIX: Respects native aspect ratio */
+    max-height: 65vh; /* FIX: Set limit to 65vh */
+    object-fit: cover !important; /* Crops cleanly only if image exceeds 65vh */
+    z-index: 2; 
+}
+
+.gallery-strip { display: flex; gap: 8px; overflow-x: auto; padding: 8px 10px; background: white; border-bottom: 1px solid #eee; }
+.thumbnail { width: 35px; height: 35px; border-radius: 4px; border: 1px solid #ddd; object-fit: cover; flex-shrink: 0; }
 .thumbnail.active { border: 2px solid var(--primary); }
 
-.detail-info { background: white; padding: 15px; margin-bottom: 10px; }
-.detail-price { color: var(--primary); font-size: 24px; font-weight: bold; }
-.detail-title { font-size: 16px; margin-top: 5px; line-height: 1.4; color: #222; }
-.section-title { font-size: 14px; font-weight: bold; color: #555; padding: 5px; padding-left: 15px; margin-top: 5px; margin-right: 15; }
-.info-text { font-size: 13px; color: #666; line-height: 1.5; background: white; }
+
+
+.detail-info { background: white; padding: 10px 15px; margin-bottom: 5px; } /* Tighter container padding */
+.detail-title { font-size: 16px; font-weight: 700; color: var(--dark); line-height: 1.2; margin: 0 0 2px 0; }
+.detail-subtitle { font-size: 13px; color: #7E818C; margin: 0 0 2px 0; line-height: 1.1; } /* Ultra tight subtitle gap */
+.detail-price { margin: 0; }
+
+
+
+
+
+
+
+.section-title { font-size: 15px; font-weight: 700; color: var(--dark); padding: 5px 15px; margin-top: 15px; text-transform: uppercase; letter-spacing: 0.5px; }
+.info-text { font-size: 14px; color: #444; line-height: 1.6; }
+
+.details-box {
+    background: #ffffff;
+    border: 1px solid #eaeaec;
+    border-radius: 12px;
+    padding: 15px;
+    margin: 10px 15px;
+}
+
+
+
+
 
 /* --- MODAL & SELECTION --- */
 .selection-modal {
@@ -168,57 +278,76 @@ button { cursor: pointer; }
 .nav-item.active { color: var(--primary); }
 .nav-item i { font-size: 20px; margin-bottom: 2px; }
 
+
+
+
 /* Product Page Bottom Bar */
 /* Product Page Bottom Bar */
+/* Product Page Bottom Bar - Solid Premium Buttons */
+/* Product Page Bottom Bar - Solid Premium Buttons */
 .product-bottom-nav { 
     justify-content: flex-start; 
-    align-items: center; /* Floats the buttons vertically in the middle */
+    align-items: center; 
 }
 .icon-btn { 
     width: 15%; 
-    height: 100%; /* Keeps the Home/Chat tap area full height */
+    height: 100%; 
     display: flex; 
     flex-direction: column; 
     justify-content: center; 
     align-items: center; 
     border-right: 1px solid #eee; 
-    font-size: 10px; 
-    color: #666; 
+    font-size: 12px; 
+    color: var(--dark); 
+    font-weight: 600;
 }
 .btn-buy, .btn-cart { 
-    flex: 1; /* Automatically balances width perfectly */
-    height: 42px; /* Shorter than the 60px bar so it floats */
+    flex: 1; 
+    height: 42px; 
     border: none; 
-    font-weight: bold; 
-    color: white; 
-    font-size: 13.5px; 
-    border-radius: 30px; /* Modern pill shape */
-    margin-right: 10px; /* Space on the right */
-    transition: transform 0.1s; /* Tiny tap animation */
+    font-weight: 700; 
+    font-size: 14px; 
+    border-radius: 30px; /* Round Pill Shape */
+    margin-right: 10px; 
+    transition: transform 0.1s; 
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
-/* Makes the buttons shrink slightly when you tap them like a real app */
-.btn-buy:active, .btn-cart:active {
-    transform: scale(0.95);
-}
+.btn-buy:active, .btn-cart:active { transform: scale(0.96); }
+
+/* Buy Now = Myntra Rose with Shadow */
 .btn-buy { 
-    margin-left: 10px; /* Space between the chat icon and button */
-    background: linear-gradient(to right, #ff9000, #ff5000); 
-    box-shadow: 0 4px 12px rgba(255, 80, 0, 0.4); /* Glowing 3D shadow */
+    margin-left: 10px; 
+    background: var(--primary); 
+    color: white;
+    box-shadow: 0 4px 12px rgba(255, 63, 108, 0.35);
 }
+
+/* Add To Cart = Deep Charcoal with Shadow */
 .btn-cart { 
-    background: linear-gradient(to right, #ffb03a, #ff9000); 
-    box-shadow: 0 4px 12px rgba(255, 176, 58, 0.4); /* Glowing 3D shadow */
+    background: var(--dark); 
+    color: white; 
+    box-shadow: 0 4px 12px rgba(40, 44, 63, 0.35);
 }
 
 /* --- NEW FEATURES CSS --- */
-/* Cart Badge */
+/* Cart Badge - High Contrast Pop */
 .cart-icon-wrapper { position: relative; display: inline-block; }
 .cart-badge {
-    position: absolute; top: -5px; right: -10px;
-    background: var(--accent); color: white;
-    font-size: 10px; font-weight: bold;
-    padding: 2px 5px; border-radius: 10px; display: none;
+    position: absolute; top: -6px; right: -8px;
+    background: var(--primary); color: white;
+    font-size: 11px; font-weight: 800;
+    padding: 2px 6px; border-radius: 12px; display: none;
+    border: 2px solid white; /* Pop out effect */
+    box-shadow: 0 2px 4px rgba(255,63,108,0.3);
 }
+
+
+
+
+
+
+
 
 /* Toast Notification */
 /* --- UPDATED TOAST NOTIFICATION (Centered Daraz Style) --- */
@@ -285,57 +414,37 @@ button { cursor: pointer; }
 .color-option.selected { border-color: var(--primary); color: var(--primary); background: #fff0e8; }
 
 /* Fullscreen Image Modal */
+/* Fullscreen Image Modal */
 .fullscreen-img-modal {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
     background: black; z-index: 9999; display: none;
-    justify-content: center; align-items: center;
+    justify-content: center; 
+    align-items: flex-start; 
+    overflow-y: auto; 
+    padding: 20px 0;
 }
 .fullscreen-img-modal.active { display: flex; }
-.fullscreen-img-modal img { max-width: 100%; max-height: 100%; object-fit: contain; } /* Prevents cropping */
+.fullscreen-img-modal img { 
+    max-width: 100%; 
+    height: auto; 
+    object-fit: contain; 
+    margin: auto; 
+}
 .close-fullscreen { position: absolute; top: 20px; right: 20px; color: white; font-size: 30px; cursor: pointer; }
+
+
+
+
+
 
 /* Empty Cart State */
 .empty-cart-msg { text-align: center; padding: 50px 20px; color: #666; }
 .empty-cart-msg i { font-size: 50px; color: #ccc; margin-bottom: 15px; }
 
 
-/* --- NEW UPDATES --- */
 
-/* Product Page Image Blur & Crop Protection */
 
-/* --- PRODUCT IMAGE: PERFECT SQUARE & BLUR EFFECT --- */
-.product-image-container {
-    position: relative;
-    width: 100%;
-    /*aspect-ratio: 1 / 1 !important; /* Forces a perfect square */
-    height: 300px;
-    overflow: hidden;
-    background: #111; /* Dark base so blur looks rich */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
-.bg-blur {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Fills the background entirely */
-    filter: blur(15px); /* The blur amount */
-    opacity: 0.65; /* Dims the background so the main image pops */
-    transform: scale(1.15); /* Pushes the sharp, unblurred edges outside the screen */
-    z-index: 1;
-}
-
-.detail-image {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    object-fit: contain !important; /* Prevents cropping, maintains actual ratio */
-    z-index: 2; /* Keeps main image clearly above the blur */
-}
 
 /* Checkout Text Wrapping & Delete Button */
 .checkout-details { flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; min-width: 0; /* min-width 0 forces flex to allow truncation */ }
