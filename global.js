@@ -26,6 +26,11 @@ const LOC_OUTSIDE = "Outside Dhaka";
 const FEE_OUTSIDE = 150;
 
 
+const BKASH_NUMBER = "01712987654";
+const DISCOUNT_PARTIAL = "20";
+const DISCOUNT_FULL = "30";
+
+
 // ==========================================
 // 📱 About Section SOCIAL & CONTACT LINKS
 // Leave empty ("") if a client doesn't have one!
